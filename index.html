@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IKEA Indonesia | 'Skala Kost' Micro-Living Series</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Noto Sans Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ikea: {
+                            blue: '#0051BA',
+                            yellow: '#FFDA1A',
+                            darkblue: '#003366',
+                            hoverblue: '#003E8A',
+                            grayBg: '#F5F5F5',
+                            cardBg: '#FFFFFF',
+                            textDark: '#111111',
+                            textMuted: '#484848',
+                            redPill: '#CC0008'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .ikea-pill-badge {
+            background-color: #CC0008;
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 2px;
+            letter-spacing: -0.2px;
+        }
+        .ikea-yellow-badge {
+            background-color: #FFDA1A;
+            color: #111111;
+            font-weight: 800;
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 2px;
+        }
+        /* Custom subtle Batik pattern backgrounds */
+        .batik-overlay-subtle {
+            background-image: radial-gradient(#0051BA 1px, transparent 1px);
+            background-size: 12px 12px;
+            opacity: 0.05;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #929292;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #111111;
+        }
+    </style>
+</head>
+<body class="bg-white text-ikea-textDark font-sans antialiased selection:bg-ikea-yellow selection:text-ikea-textDark">
+
+    <!-- Official Top Utility Bar with Javanese Greeting -->
+    <div class="bg-ikea-grayBg border-b border-gray-200 text-xs py-2 px-4 text-ikea-textMuted">
+        <div class="max-w-[1400px] mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center gap-4 sm:gap-6">
+                <!-- Sugeng Rawuh Greeting replacing Swedish Hej -->
+                <span class="font-extrabold text-ikea-blue bg-yellow-200/80 px-2.5 py-0.5 rounded text-[11px] tracking-wide">
+                    🙏 Sugeng Rawuh to IKEA Indonesia!
+                </span>
+                <span class="hidden md:inline text-gray-300">|</span>
+                <span class="flex items-center gap-1 font-medium text-ikea-textDark">
+                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-ikea-blue"></i>
+                    Selected Store: <strong class="underline cursor-pointer" onclick="toggleStoreModal()">IKEA Surakarta (Solo)</strong>
+                </span>
+            </div>
+            <div class="flex items-center gap-4 text-[11px] font-medium">
+                <a href="#angkot-checker" class="hidden sm:flex items-center gap-1 text-emerald-700 font-bold hover:underline">
+                    <i data-lucide="truck" class="w-3.5 h-3.5"></i> 'Angkot IKEA' Gang Delivery
+                </a>
+                <span class="text-gray-300">|</span>
+                <a href="#challenge" class="hover:underline text-red-600 font-bold">90% Makeover Challenge</a>
+                <span class="text-gray-300">|</span>
+                <button class="flex items-center gap-1 font-bold hover:underline">
+                    <span>EN</span> <i data-lucide="chevron-down" class="w-3 h-3"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main IKEA Global Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-white border-b border-gray-200">
+        <div class="max-w-[1400px] mx-auto px-4 lg:px-8 py-3.5 flex items-center justify-between gap-4 sm:gap-8">
+            
+            <!-- IKEA Brand Logo with Batik Motif Accent -->
+            <div class="flex items-center gap-4 sm:gap-6">
+                <a href="#" class="block focus:outline-none">
+                    <div class="bg-ikea-blue p-2.5 px-6 rounded-none flex items-center justify-center relative overflow-hidden group">
+                        <!-- Subtle Batik Pattern overlay -->
+                        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#FFDA1A_1px,transparent_1px)] [background-size:6px_6px]"></div>
+                        <span class="text-ikea-yellow font-black text-3xl tracking-tighter relative z-10 leading-none">IKEA</span>
+                    </div>
+                </a>
+                <span class="hidden xl:block text-xs font-bold tracking-wider text-ikea-textMuted uppercase border-l border-gray-300 pl-4 py-1">
+                    'Skala Kost' <br><span class="text-ikea-blue font-black">Nusantara Series</span>
+                </span>
+            </div>
+
+            <!-- Official IKEA Search Bar -->
+            <div class="flex-1 max-w-2xl relative hidden sm:block">
+                <div class="relative flex items-center">
+                    <i data-lucide="search" class="w-5 h-5 absolute left-4 text-gray-400"></i>
+                    <input type="text" id="search-input" onkeyup="filterProducts()" placeholder="What are you looking for? (e.g. JATI CILIK, Bambu Sekawan, Angkot Delivery)" class="w-full bg-ikea-grayBg hover:bg-gray-200/80 focus:bg-white focus:ring-2 focus:ring-ikea-blue text-sm py-3 pl-12 pr-10 rounded-full border border-transparent focus:border-ikea-blue outline-none transition-all">
+                    <button class="absolute right-3 p-1 hover:bg-gray-300 rounded-full">
+                        <i data-lucide="camera" class="w-4 h-4 text-gray-500"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Header Action Buttons -->
+            <div class="flex items-center gap-2 sm:gap-4">
+                <a href="#challenge" class="flex flex-col items-center p-2 hover:bg-ikea-grayBg rounded-full text-red-600 font-bold transition-all relative" title="90% Discount Challenge">
+                    <i data-lucide="sparkles" class="w-6 h-6"></i>
+                    <span class="absolute -top-1 -right-1 bg-red-600 text-white text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center">90%</span>
+                </a>
+                <button onclick="alert('IKEA Family Account Login Modal')" class="p-2.5 hover:bg-ikea-grayBg rounded-full transition-colors hidden sm:block" title="User Profile">
+                    <i data-lucide="user" class="w-6 h-6 text-ikea-textDark"></i>
+                </button>
+                <button onclick="toggleWishlistDrawer()" class="p-2.5 hover:bg-ikea-grayBg rounded-full transition-colors relative" title="Favorites">
+                    <i data-lucide="heart" class="w-6 h-6 text-ikea-textDark"></i>
+                    <span id="wishlist-count" class="absolute top-1 right-1 bg-ikea-yellow text-ikea-textDark text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                </button>
+                <button onclick="toggleCartDrawer()" class="p-2.5 hover:bg-ikea-grayBg rounded-full transition-colors relative" title="Shopping Bag">
+                    <i data-lucide="shopping-bag" class="w-6 h-6 text-ikea-textDark"></i>
+                    <span id="cart-count" class="absolute top-1 right-1 bg-ikea-blue text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">1</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Category Links -->
+        <div class="border-t border-gray-100 hidden md:block">
+            <div class="max-w-[1400px] mx-auto px-4 lg:px-8 flex items-center gap-8 text-xs font-bold text-ikea-textDark py-2.5">
+                <a href="#hero" class="hover:underline flex items-center gap-1"><i data-lucide="grid" class="w-4 h-4 text-ikea-blue"></i> Home</a>
+                <a href="#catalog" class="hover:underline text-ikea-blue">Nusantara Micro-Living Lineup</a>
+                <a href="#challenge" class="hover:underline text-red-600 flex items-center gap-1"><i data-lucide="flame" class="w-3.5 h-3.5"></i> 90% Makeover Challenge</a>
+                <a href="#planner" class="hover:underline">3x3m Room Planner</a>
+                <a href="#angkot-checker" class="hover:underline">Angkot IKEA Delivery</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Showcase Section -->
+    <section id="hero" class="relative bg-ikea-yellow py-8 lg:py-12 overflow-hidden border-b border-yellow-400">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#0051BA_1px,transparent_1px)] [background-size:20px_20px]"></div>
+
+        <div class="max-w-[1400px] mx-auto px-4 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <!-- Left Text Column -->
+                <div class="lg:col-span-5 space-y-6 text-ikea-textDark">
+                    <div class="inline-flex items-center gap-2 bg-ikea-blue text-white px-3.5 py-1.5 font-bold text-xs uppercase tracking-wider">
+                        <i data-lucide="sparkles" class="w-4 h-4 text-ikea-yellow"></i>
+                        New Indonesian Collection 2026
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl xl:text-6xl font-extrabold tracking-tight leading-[1.05]">
+                        Fresh at IKEA Indonesia
+                    </h1>
+
+                    <p class="text-lg font-medium text-ikea-textDark/90 leading-snug">
+                        New 'Kost-Scale' Micro-Living Collection now in store. Tailor-made for 3x3m Indonesian boarder rooms.
+                    </p>
+
+                    <!-- Featured Product Box -->
+                    <div class="bg-white p-5 border-2 border-ikea-blue shadow-xl space-y-3">
+                        <div class="flex items-center justify-between border-b border-gray-100 pb-2">
+                            <span class="ikea-pill-badge">New!</span>
+                            <span class="text-xs font-bold text-ikea-textMuted">SKU: JATI-CILIK-3IN1</span>
+                        </div>
+                        
+                        <div>
+                            <h2 class="text-xl font-extrabold text-ikea-textDark">JATI CILIK</h2>
+                            <p class="text-xs text-ikea-textMuted">3-in-1 Micro-Living Unit (Desk, Folding Bed & Shoe Tower)</p>
+                        </div>
+
+                        <div class="flex items-baseline gap-3">
+                            <span class="text-3xl font-black text-ikea-blue">Rp 800.000</span>
+                            <div class="bg-red-100 text-red-800 text-xs font-extrabold px-2 py-1 rounded">
+                                Challenge Price: <strong>Rp 80.000</strong> (90% OFF)
+                            </div>
+                        </div>
+
+                        <div class="pt-2 flex flex-col sm:flex-row gap-2">
+                            <a href="#challenge" class="flex-1 bg-ikea-blue hover:bg-ikea-hoverblue text-white font-bold text-xs py-3 px-4 text-center transition-colors flex items-center justify-center gap-2">
+                                <i data-lucide="video" class="w-4 h-4 text-ikea-yellow"></i>
+                                Enter 90% Challenge
+                            </a>
+                            <a href="#angkot-checker" class="bg-ikea-grayBg hover:bg-gray-200 text-ikea-textDark font-bold text-xs py-3 px-4 text-center transition-colors">
+                                Delivery Check
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Angkot Delivery Banner -->
+                    <div class="flex items-center gap-3 bg-white/90 backdrop-blur-sm p-3 border border-yellow-500/40 text-xs font-medium">
+                        <div class="w-8 h-8 bg-ikea-blue text-white font-extrabold flex items-center justify-center shrink-0">🚌</div>
+                        <span>'Gang-Friendly' <strong>Angkot IKEA</strong> fleet delivers directly into narrow urban alleys where big trucks can't fit!</span>
+                    </div>
+                </div>
+
+                <!-- Right Visual Column (Promotional Poster Image 9.jpeg) -->
+                <div class="lg:col-span-7 flex justify-center">
+                    <div class="relative w-full max-w-lg bg-white p-3 shadow-2xl border-4 border-ikea-blue group">
+                        <img src="9.jpeg" alt="Fresh at IKEA Indonesia - Kost Scale Micro Living" class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.01]" onerror="this.onerror=null; this.src='https://placehold.co/600x850/FFDA1A/0051BA?text=IKEA+Skala+Kost+JATI+CILIK';">
+                        
+                        <div class="absolute bottom-6 right-6 bg-ikea-blue text-white p-3 shadow-xl border border-ikea-yellow hidden sm:block text-xs font-bold">
+                            <span>🇮🇩 Traditional Motif Accents & Affordable Living</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Catalog Section -->
+    <section id="catalog" class="py-16 bg-white">
+        <div class="max-w-[1400px] mx-auto px-4 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-4 border-b border-gray-200">
+                <div>
+                    <span class="text-xs font-bold text-ikea-blue uppercase tracking-widest">Nusantara Urban Living</span>
+                    <h2 class="text-3xl font-extrabold text-ikea-textDark mt-1">'Skala Kost' Furniture Series</h2>
+                </div>
+                <p class="text-xs text-ikea-textMuted mt-2 md:mt-0 max-w-md">
+                    Minimalist, rigid, easy to assemble (*easy assembly*), and crafted with authentic Indonesian traditional corak motifs.
+                </p>
+            </div>
+
+            <!-- Product Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Product 1: JATI CILIK -->
+                <div class="product-card group border border-gray-200 hover:border-ikea-blue transition-all flex flex-col justify-between bg-white" data-name="jati cilik micro living desk bed">
+                    <div class="relative p-4 bg-ikea-grayBg flex items-center justify-center min-h-[320px] overflow-hidden">
+                        <span class="absolute top-3 left-3 ikea-pill-badge">New!</span>
+                        <span class="absolute top-3 right-3 ikea-yellow-badge">Batik Megamendung</span>
+                        
+                        <img src="9.jpeg" alt="JATI CILIK 3-in-1 Unit" class="max-h-72 object-contain group-hover:scale-105 transition-transform duration-300">
+                    </div>
+
+                    <div class="p-6 space-y-3">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h3 class="text-lg font-extrabold text-ikea-textDark group-hover:text-ikea-blue transition-colors">JATI CILIK</h3>
+                                <p class="text-xs font-medium text-ikea-textMuted">3-in-1 Micro-Living Desk & Bed Unit</p>
+                            </div>
+                            <button onclick="toggleWishlist('JATI CILIK')" class="p-2 hover:bg-ikea-grayBg rounded-full text-gray-400 hover:text-red-500 transition-colors">
+                                <i data-lucide="heart" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+
+                        <p class="text-xs text-ikea-textMuted leading-relaxed">
+                            Multi-functional fold-out study desk, soft mattress bed, vertical shoe tower, and hidden laundry drying rack.
+                        </p>
+
+                        <div class="pt-3 border-t border-gray-100">
+                            <div class="flex items-baseline justify-between mb-3">
+                                <div>
+                                    <span class="text-2xl font-black text-ikea-textDark">Rp 800.000</span>
+                                    <span class="block text-[11px] text-red-600 font-extrabold">Challenge Price: Rp 80.000</span>
+                                </div>
+                                <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-1">In Stock (Solo)</span>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="openProductModal('jati-cilik')" class="bg-ikea-grayBg hover:bg-gray-200 text-ikea-textDark text-xs font-bold py-2.5 px-3 transition-colors text-center">
+                                    Quick View
+                                </button>
+                                <button onclick="addToCart('JATI CILIK', 800000)" class="bg-ikea-blue hover:bg-ikea-hoverblue text-white text-xs font-bold py-2.5 px-3 transition-colors flex items-center justify-center gap-1">
+                                    <i data-lucide="plus" class="w-4 h-4"></i> Add to Bag
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2: BAMBU SEKAWAN -->
+                <div class="product-card group border border-gray-200 hover:border-ikea-blue transition-all flex flex-col justify-between bg-white" data-name="bambu sekawan modular bamboo storage gedheg">
+                    <div class="relative p-4 bg-ikea-grayBg flex items-center justify-center min-h-[320px] overflow-hidden">
+                        <span class="absolute top-3 left-3 ikea-pill-badge">New!</span>
+                        <span class="absolute top-3 right-3 ikea-yellow-badge">Woven Gedheg Style</span>
+                        
+                        <img src="watermarked_img_13575597775008523600.jpg" alt="BAMBU SEKAWAN Unit" class="max-h-72 object-contain group-hover:scale-105 transition-transform duration-300">
+                    </div>
+
+                    <div class="p-6 space-y-3">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h3 class="text-lg font-extrabold text-ikea-textDark group-hover:text-ikea-blue transition-colors">BAMBU SEKAWAN</h3>
+                                <p class="text-xs font-medium text-ikea-textMuted">Modular Bamboo Storage & Room Divider</p>
+                            </div>
+                            <button onclick="toggleWishlist('BAMBU SEKAWAN')" class="p-2 hover:bg-ikea-grayBg rounded-full text-gray-400 hover:text-red-500 transition-colors">
+                                <i data-lucide="heart" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+
+                        <p class="text-xs text-ikea-textMuted leading-relaxed">
+                            Stackable bamboo cube unit inspired by West Java woven *gedheg*. Modular partition with slotted assembly.
+                        </p>
+
+                        <div class="pt-3 border-t border-gray-100">
+                            <div class="flex items-baseline justify-between mb-3">
+                                <div>
+                                    <span class="text-2xl font-black text-ikea-textDark">Rp 2.500.000</span>
+                                    <span class="block text-[11px] text-red-600 font-extrabold">Challenge Price: Rp 250.000</span>
+                                </div>
+                                <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-1">In Stock (Solo)</span>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="openProductModal('bambu-sekawan')" class="bg-ikea-grayBg hover:bg-gray-200 text-ikea-textDark text-xs font-bold py-2.5 px-3 transition-colors text-center">
+                                    Quick View
+                                </button>
+                                <button onclick="addToCart('BAMBU SEKAWAN', 2500000)" class="bg-ikea-blue hover:bg-ikea-hoverblue text-white text-xs font-bold py-2.5 px-3 transition-colors flex items-center justify-center gap-1">
+                                    <i data-lucide="plus" class="w-4 h-4"></i> Add to Bag
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3: ROTAN LINTAS -->
+                <div class="product-card group border border-gray-200 hover:border-ikea-blue transition-all flex flex-col justify-between bg-white" data-name="rotan lintas rattan floor chair lesehan batik kawung">
+                    <div class="relative p-4 bg-ikea-grayBg flex items-center justify-center min-h-[320px] overflow-hidden">
+                        <span class="absolute top-3 left-3 ikea-pill-badge">New!</span>
+                        <span class="absolute top-3 right-3 ikea-yellow-badge">Batik Kawung Cushion</span>
+                        
+                        <img src="watermarked_img_8317260416972360550.jpg" alt="ROTAN LINTAS Chair" class="max-h-72 object-contain group-hover:scale-105 transition-transform duration-300">
+                    </div>
+
+                    <div class="p-6 space-y-3">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h3 class="text-lg font-extrabold text-ikea-textDark group-hover:text-ikea-blue transition-colors">ROTAN LINTAS</h3>
+                                <p class="text-xs font-medium text-ikea-textMuted">Collapsible Rattan Ergonomic Floor Chair</p>
+                            </div>
+                            <button onclick="toggleWishlist('ROTAN LINTAS')" class="p-2 hover:bg-ikea-grayBg rounded-full text-gray-400 hover:text-red-500 transition-colors">
+                                <i data-lucide="heart" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+
+                        <p class="text-xs text-ikea-textMuted leading-relaxed">
+                            Natural Cirebon rattan floor chair (*kursi lesehan*) with ergonomic backrest and batik cushion pattern.
+                        </p>
+
+                        <div class="pt-3 border-t border-gray-100">
+                            <div class="flex items-baseline justify-between mb-3">
+                                <div>
+                                    <span class="text-2xl font-black text-ikea-textDark">Rp 500.000</span>
+                                    <span class="block text-[11px] text-red-600 font-extrabold">Challenge Price: Rp 50.000</span>
+                                </div>
+                                <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-1">In Stock (Solo)</span>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="openProductModal('rotan-lintas')" class="bg-ikea-grayBg hover:bg-gray-200 text-ikea-textDark text-xs font-bold py-2.5 px-3 transition-colors text-center">
+                                    Quick View
+                                </button>
+                                <button onclick="addToCart('ROTAN LINTAS', 500000)" class="bg-ikea-blue hover:bg-ikea-hoverblue text-white text-xs font-bold py-2.5 px-3 transition-colors flex items-center justify-center gap-1">
+                                    <i data-lucide="plus" class="w-4 h-4"></i> Add to Bag
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 90% Discount Challenge Section -->
+    <section id="challenge" class="py-16 bg-ikea-grayBg border-t border-gray-200">
+        <div class="max-w-[1400px] mx-auto px-4 lg:px-8">
+            
+            <div class="bg-white border-2 border-red-600 p-8 lg:p-12 shadow-2xl relative overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <div class="lg:col-span-7 space-y-5">
+                        <div class="inline-flex items-center gap-2 bg-red-600 text-white font-extrabold text-xs px-3 py-1 uppercase">
+                            <i data-lucide="flame" class="w-4 h-4"></i> Viral Social Media Challenge
+                        </div>
+
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-ikea-textDark leading-tight">
+                            "3x3m Kost Room Makeover" Challenge
+                        </h2>
+
+                        <p class="text-sm text-ikea-textMuted leading-relaxed">
+                            Create a short video on TikTok or Instagram Reels using hashtags <strong>#SatuKamarSerbaBisa</strong> and <strong>#IKEAKostMakeover</strong>. Combine IKEA Skala Kost items with **your own DIY handmade/upcycled furniture** to unlock an instant **90% OFF discount code**!
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs pt-2">
+                            <div class="bg-ikea-grayBg p-3 border border-gray-200">
+                                <strong class="text-ikea-blue block mb-1">1. Craft a DIY Item</strong>
+                                Create 1 handmade or upcycled furniture piece.
+                            </div>
+                            <div class="bg-ikea-grayBg p-3 border border-gray-200">
+                                <strong class="text-ikea-blue block mb-1">2. Upload Video</strong>
+                                Post on TikTok / Reels & tag @IKEA_ID.
+                            </div>
+                            <div class="bg-ikea-grayBg p-3 border border-gray-200">
+                                <strong class="text-ikea-blue block mb-1">3. Get 90% OFF</strong>
+                                Claim JATI CILIK for only **Rp 80.000**!
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submission Widget -->
+                    <div class="lg:col-span-5 bg-ikea-blue text-white p-6 sm:p-8 space-y-4 shadow-lg">
+                        <h3 class="text-lg font-bold flex items-center gap-2 text-ikea-yellow">
+                            <i data-lucide="check-square" class="w-5 h-5"></i>
+                            Claim 90% Discount Voucher
+                        </h3>
+
+                        <form onsubmit="handleChallengeSubmit(event)" class="space-y-3 text-xs">
+                            <div>
+                                <label class="block font-medium mb-1 text-blue-100">TikTok / Instagram Reels URL</label>
+                                <input type="url" required placeholder="https://www.tiktok.com/@username/video/..." class="w-full p-3 text-ikea-textDark bg-white outline-none focus:ring-2 focus:ring-ikea-yellow font-medium">
+                            </div>
+
+                            <div>
+                                <label class="block font-medium mb-1 text-blue-100">Describe Your DIY Furniture Project</label>
+                                <input type="text" required placeholder="e.g. Handmade cardboard desk organizer & recycled wood shelf" class="w-full p-3 text-ikea-textDark bg-white outline-none focus:ring-2 focus:ring-ikea-yellow font-medium">
+                            </div>
+
+                            <div>
+                                <label class="block font-medium mb-1 text-blue-100">Select Target Product</label>
+                                <select id="challenge-product" class="w-full p-3 text-ikea-textDark bg-white font-bold outline-none">
+                                    <option value="80000">JATI CILIK 3-in-1 (Rp 800.000 -> Rp 80.000)</option>
+                                    <option value="250000">BAMBU SEKAWAN (Rp 2.500.000 -> Rp 250.000)</option>
+                                    <option value="50000">ROTAN LINTAS (Rp 500.000 -> Rp 50.000)</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="w-full bg-ikea-yellow hover:bg-yellow-400 text-ikea-textDark font-extrabold py-3 px-4 text-xs transition-colors tracking-wide uppercase mt-2">
+                                Verify Entry & Unlock 90% OFF Code
+                            </button>
+                        </form>
+
+                        <div id="challenge-verified" class="hidden p-3 bg-emerald-600 text-white font-bold text-xs text-center border border-white/30 space-y-1">
+                            <p>🎉 Entry Verified! Your 90% Promo Code:</p>
+                            <span class="bg-white text-emerald-900 px-3 py-1 font-mono font-black text-sm inline-block">SERBABISA90</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Interactive Room Planner & Delivery Section -->
+    <section id="planner" class="py-16 bg-white border-t border-gray-200">
+        <div class="max-w-[1400px] mx-auto px-4 lg:px-8">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- 3x3m Room Grid Simulator -->
+                <div class="lg:col-span-7 bg-ikea-grayBg p-8 border border-gray-200 space-y-6">
+                    <div>
+                        <div class="flex items-center gap-2 text-ikea-blue text-xs font-bold uppercase tracking-wider">
+                            <i data-lucide="layout-grid" class="w-4 h-4"></i> Room Space Planner
+                        </div>
+                        <h3 class="text-2xl font-extrabold text-ikea-textDark mt-1">3x3m Kost Room Visualizer</h3>
+                        <p class="text-xs text-ikea-textMuted">Toggle furniture modules to simulate spatial efficiency inside a typical 9m² Indonesian room.</p>
+                    </div>
+
+                    <!-- Room Grid Interface -->
+                    <div class="bg-white p-4 border border-gray-300 shadow-inner">
+                        <div class="flex justify-between items-center text-xs font-bold text-ikea-textMuted mb-2">
+                            <span>WALL A (3.0 Meters)</span>
+                            <span>WALL B (3.0 Meters)</span>
+                        </div>
+                        
+                        <!-- 3x3 Grid Matrix -->
+                        <div class="grid grid-cols-3 gap-2 aspect-square max-w-sm mx-auto bg-gray-100 p-2 border-2 border-dashed border-gray-400">
+                            <div id="grid-cell-1" class="bg-white border flex flex-col items-center justify-center p-2 text-center text-[10px] font-bold text-gray-400">
+                                Doorway
+                            </div>
+                            <div id="cell-jati" class="bg-ikea-blue/10 border border-ikea-blue flex flex-col items-center justify-center p-2 text-center text-[10px] font-bold text-ikea-blue">
+                                🛏️ JATI CILIK <br>(Bed & Desk)
+                            </div>
+                            <div id="cell-bambu" class="bg-amber-100 border border-amber-600 flex flex-col items-center justify-center p-2 text-center text-[10px] font-bold text-amber-900">
+                                🎋 BAMBU SEKAWAN <br>(Storage)
+                            </div>
+                            <div id="cell-rotan" class="bg-yellow-100 border border-yellow-600 flex flex-col items-center justify-center p-2 text-center text-[10px] font-bold text-yellow-900">
+                                🪑 ROTAN LINTAS <br>(Floor Seating)
+                            </div>
+                            <div class="bg-emerald-50 border border-emerald-300 flex items-center justify-center p-2 text-center text-[10px] font-bold text-emerald-800">
+                                ✨ Free Walkway Space
+                            </div>
+                            <div class="bg-emerald-50 border border-emerald-300 flex items-center justify-center p-2 text-center text-[10px] font-bold text-emerald-800">
+                                ✨ Free Walkway Space
+                            </div>
+                            <div class="bg-emerald-50 border border-emerald-300 flex items-center justify-center p-2 text-center text-[10px] font-bold text-emerald-800">
+                                ✨ Free Walkway Space
+                            </div>
+                            <div class="bg-emerald-50 border border-emerald-300 flex items-center justify-center p-2 text-center text-[10px] font-bold text-emerald-800">
+                                ✨ Free Walkway Space
+                            </div>
+                            <div class="bg-emerald-50 border border-emerald-300 flex items-center justify-center p-2 text-center text-[10px] font-bold text-emerald-800">
+                                ✨ Free Walkway Space
+                            </div>
+                        </div>
+
+                        <!-- Room Stats -->
+                        <div class="mt-4 pt-3 border-t border-gray-200 flex items-center justify-between text-xs">
+                            <span class="font-bold text-ikea-textDark">Total Room Area: <strong>9.0 m²</strong></span>
+                            <span class="bg-emerald-100 text-emerald-900 font-bold px-2 py-1">Remaining Free Floor: <strong>6.2 m² (68%)</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Angkot Delivery Checker -->
+                <div id="angkot-checker" class="lg:col-span-5 bg-ikea-grayBg p-8 border border-gray-200 space-y-6">
+                    <div>
+                        <div class="flex items-center gap-2 text-ikea-blue text-xs font-bold uppercase tracking-wider">
+                            <i data-lucide="truck" class="w-4 h-4"></i> Urban Delivery Innovation
+                        </div>
+                        <h3 class="text-2xl font-extrabold text-ikea-textDark mt-1">Angkot IKEA Gang Route Checker</h3>
+                        <p class="text-xs text-ikea-textMuted">Test if our nimble electric mini-bus fleet can navigate your neighborhood alley.</p>
+                    </div>
+
+                    <form onsubmit="checkAngkotRoute(event)" class="space-y-4 text-xs">
+                        <div>
+                            <label class="block font-bold text-ikea-textDark mb-1">Select Delivery City</label>
+                            <select id="delivery-city" class="w-full p-3 bg-white border border-gray-300 font-semibold outline-none focus:border-ikea-blue">
+                                <option>Surakarta / Solo (Kentingan, Jebres, Manahan)</option>
+                                <option>Jakarta (Kemanggisan, Salemba, Tebet)</option>
+                                <option>Bandung (Jatinangor, Dipatiukur, Dago)</option>
+                                <option>Yogyakarta (Seturan, Terban, Pogung)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block font-bold text-ikea-textDark mb-1">Estimated Alley Width (Meters)</label>
+                            <input type="number" id="alley-width" min="1.0" max="5.0" step="0.1" value="1.8" class="w-full p-3 bg-white border border-gray-300 font-semibold outline-none focus:border-ikea-blue">
+                            <p class="text-[10px] text-ikea-textMuted mt-1">Angkot IKEA requires a minimum alley width of 1.4 meters.</p>
+                        </div>
+
+                        <button type="submit" class="w-full bg-ikea-blue hover:bg-ikea-hoverblue text-white font-extrabold py-3.5 text-xs uppercase tracking-wider transition-colors">
+                            Check Gang Accessibility
+                        </button>
+                    </form>
+
+                    <div id="angkot-result" class="hidden p-4 bg-emerald-100 border border-emerald-300 text-emerald-900 text-xs font-medium space-y-1">
+                        <strong class="block text-emerald-950 font-extrabold text-sm">✅ Route Accessible!</strong>
+                        <p>Our electric Angkot IKEA mini-bus can enter your gang and deliver furniture directly to your doorstep with zero emission.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Cart Drawer Modal -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex justify-end">
+        <div class="bg-white w-full max-w-md h-full p-6 flex flex-col justify-between shadow-2xl">
+            <div>
+                <div class="flex items-center justify-between pb-4 border-b border-gray-200">
+                    <h3 class="text-lg font-extrabold text-ikea-textDark flex items-center gap-2">
+                        <i data-lucide="shopping-bag" class="w-5 h-5 text-ikea-blue"></i> Shopping Bag
+                    </h3>
+                    <button onclick="toggleCartDrawer()" class="p-1 hover:bg-ikea-grayBg rounded-full">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+
+                <div id="cart-items-list" class="py-4 space-y-3 text-xs">
+                    <!-- Cart Item Dynamic -->
+                </div>
+            </div>
+
+            <div class="pt-4 border-t border-gray-200 space-y-3">
+                <div class="flex justify-between font-extrabold text-sm text-ikea-textDark">
+                    <span>Total Amount:</span>
+                    <span id="cart-total-price">Rp 800.000</span>
+                </div>
+                <button onclick="alert('Proceeding to IKEA Secure Checkout')" class="w-full bg-ikea-blue hover:bg-ikea-hoverblue text-white font-extrabold py-3.5 text-xs uppercase tracking-wider">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Quick View Modal -->
+    <div id="product-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white max-w-2xl w-full p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto border-4 border-ikea-blue shadow-2xl">
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 p-2 bg-ikea-grayBg hover:bg-gray-300 rounded-full">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            
+            <div id="product-modal-content" class="space-y-4">
+                <!-- Injected via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Official Style Footer -->
+    <footer class="bg-ikea-grayBg text-ikea-textDark pt-12 pb-8 border-t border-gray-300 text-xs">
+        <div class="max-w-[1400px] mx-auto px-4 lg:px-8">
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 pb-12 border-b border-gray-300">
+                <div class="space-y-2">
+                    <h4 class="font-extrabold text-sm text-ikea-textDark">IKEA Family</h4>
+                    <p class="text-ikea-textMuted leading-relaxed">Join the IKEA Family club to receive exclusive member pricing on the 'Skala Kost' series.</p>
+                    <a href="#" class="inline-block bg-ikea-textDark text-white font-bold px-4 py-2 mt-2">Join Now</a>
+                </div>
+
+                <div class="space-y-2">
+                    <h4 class="font-extrabold text-sm text-ikea-textDark">Customer Service</h4>
+                    <ul class="space-y-1.5 text-ikea-textMuted">
+                        <li><a href="#angkot-checker" class="hover:underline">'Angkot IKEA' Alley Delivery</a></li>
+                        <li><a href="#" class="hover:underline">Assembly Services</a></li>
+                        <li><a href="#" class="hover:underline">Return Policy</a></li>
+                        <li><a href="#" class="hover:underline">Track Your Order</a></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-2">
+                    <h4 class="font-extrabold text-sm text-ikea-textDark">About IKEA Indonesia</h4>
+                    <ul class="space-y-1.5 text-ikea-textMuted">
+                        <li><a href="#" class="hover:underline">The 'Skala Kost' Concept</a></li>
+                        <li><a href="#" class="hover:underline">Sustainability & Local Artisans</a></li>
+                        <li><a href="#" class="hover:underline">Careers at IKEA</a></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-2">
+                    <h4 class="font-extrabold text-sm text-ikea-textDark">Store Locations</h4>
+                    <p class="text-ikea-textMuted">IKEA Surakarta (Solo), Central Java</p>
+                    <p class="text-ikea-textMuted">IKEA Alam Sutera, Tangerang</p>
+                    <p class="text-ikea-textMuted">IKEA Jakarta Garden City</p>
+                </div>
+            </div>
+
+            <!-- Bottom Copyright Bar -->
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-ikea-textMuted text-[11px]">
+                <div class="flex items-center gap-2">
+                    <div class="bg-ikea-blue text-ikea-yellow px-2 py-0.5 font-black">IKEA</div>
+                    <span>&copy; 2026 PT IKEA Indonesia & Inter IKEA Systems B.V. All rights reserved.</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="#" class="hover:underline">Privacy Policy</a>
+                    <a href="#" class="hover:underline">Terms & Conditions</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // State Management
+        let cartItems = [
+            { name: "JATI CILIK 3-in-1 Unit", price: 800000, qty: 1 }
+        ];
+        let wishlist = [];
+
+        // Challenge Form Submit
+        function handleChallengeSubmit(e) {
+            e.preventDefault();
+            document.getElementById('challenge-verified').classList.remove('hidden');
+            const selectedDiscountPrice = document.getElementById('challenge-product').value;
+            alert(`Entry Verified! Discount unlocked. Price reduced to Rp ${parseInt(selectedDiscountPrice).toLocaleString('id-ID')}`);
+        }
+
+        // Angkot Route Checker
+        function checkAngkotRoute(e) {
+            e.preventDefault();
+            const width = parseFloat(document.getElementById('alley-width').value) || 1.8;
+            const resultBox = document.getElementById('angkot-result');
+            
+            if (width >= 1.4) {
+                resultBox.innerHTML = `
+                    <strong class="block text-emerald-950 font-extrabold text-sm">✅ Route Accessible!</strong>
+                    <p>With an alley width of ${width}m, our electric Angkot IKEA mini-bus can enter directly to deliver your order.</p>
+                `;
+                resultBox.className = "p-4 bg-emerald-100 border border-emerald-300 text-emerald-900 text-xs font-medium space-y-1";
+            } else {
+                resultBox.innerHTML = `
+                    <strong class="block text-amber-950 font-extrabold text-sm">⚠️ Hand-Trolley Transfer Delivery</strong>
+                    <p>The alley width (${width}m) is narrower than 1.4m. Our driver will park the Angkot IKEA at the gang entrance and deliver via electric hand-trolley.</p>
+                `;
+                resultBox.className = "p-4 bg-amber-100 border border-amber-300 text-amber-900 text-xs font-medium space-y-1";
+            }
+            resultBox.classList.remove('hidden');
+        }
+
+        // Filter Products
+        function filterProducts() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const cards = document.querySelectorAll('.product-card');
+            
+            cards.forEach(card => {
+                const name = card.getAttribute('data-name');
+                if (name.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Cart Drawer Handlers
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cart-drawer');
+            drawer.classList.toggle('hidden');
+            renderCart();
+        }
+
+        function addToCart(name, price) {
+            cartItems.push({ name, price, qty: 1 });
+            document.getElementById('cart-count').innerText = cartItems.length;
+            alert(`${name} has been added to your shopping bag!`);
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cart-items-list');
+            let total = 0;
+            container.innerHTML = '';
+
+            cartItems.forEach((item, index) => {
+                total += item.price;
+                container.innerHTML += `
+                    <div class="flex items-center justify-between p-3 bg-ikea-grayBg border border-gray-200">
+                        <div>
+                            <strong class="block text-ikea-textDark font-extrabold">${item.name}</strong>
+                            <span class="text-ikea-blue font-bold">Rp ${item.price.toLocaleString('id-ID')}</span>
+                        </div>
+                        <button onclick="removeItem(${index})" class="text-red-600 hover:text-red-800 font-bold">Remove</button>
+                    </div>
+                `;
+            });
+
+            document.getElementById('cart-total-price').innerText = `Rp ${total.toLocaleString('id-ID')}`;
+        }
+
+        function removeItem(index) {
+            cartItems.splice(index, 1);
+            document.getElementById('cart-count').innerText = cartItems.length;
+            renderCart();
+        }
+
+        // Wishlist Handler
+        function toggleWishlist(productName) {
+            if (!wishlist.includes(productName)) {
+                wishlist.push(productName);
+                alert(`${productName} added to your Favorites!`);
+            } else {
+                wishlist = wishlist.filter(item => item !== productName);
+                alert(`${productName} removed from your Favorites.`);
+            }
+            document.getElementById('wishlist-count').innerText = wishlist.length;
+        }
+
+        // Product Modal Handlers
+        const productDetails = {
+            'jati-cilik': {
+                title: 'JATI CILIK - 3-in-1 Micro-Living Unit',
+                img: '9.jpeg',
+                price: 'Rp 800.000 (Rp 80.000 after 90% Challenge)',
+                desc: 'Specially engineered for Indonesian boarder rooms (anak kost) living in 3x3m spaces. Features a multi-functional 3-in-1 fold-out desk bed, vertical shoe tower, and built-in hidden drying rack wrapped in Batik Megamendung fabric.',
+                specs: 'Material: Solid Sustainable Pine & Batik Fabric | Dimensions: 120 x 80 x 180 cm | Weight: 28 kg | Assembly: Easy Slot-in 15 Mins'
+            },
+            'bambu-sekawan': {
+                title: 'BAMBU SEKAWAN - Modular Bamboo Unit',
+                img: 'watermarked_img_13575597775008523600.jpg',
+                price: 'Rp 2.500.000 (Rp 250.000 after 90% Challenge)',
+                desc: 'Modular stackable bamboo storage and room partition inspired by West Java traditional woven gedheg style. Modular design allows endless layout variations.',
+                specs: 'Material: Treated Eco Bamboo & Woven Rattan | Dimensions: 80 x 40 x 80 cm per cube | Weight: 12 kg'
+            },
+            'rotan-lintas': {
+                title: 'ROTAN LINTAS - Ergonomic Rattan Floor Chair',
+                img: 'watermarked_img_8317260416972360550.jpg',
+                price: 'Rp 500.000 (Rp 50.000 after 90% Challenge)',
+                desc: 'Collapsible ergonomic floor chair (kursi lesehan) handcrafted from Cirebon rattan with Batik Kawung cushion pattern.',
+                specs: 'Material: Natural Cirebon Rattan & High-Density Foam | Dimensions: 50 x 55 x 60 cm | Weight: 4.5 kg'
+            }
+        };
+
+        function openProductModal(key) {
+            const data = productDetails[key];
+            const modal = document.getElementById('product-modal');
+            const content = document.getElementById('product-modal-content');
+
+            content.innerHTML = `
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
+                    <img src="${data.img}" alt="${data.title}" class="w-full max-h-80 object-contain bg-ikea-grayBg p-4 border border-gray-200">
+                    <div class="space-y-3 text-xs">
+                        <span class="ikea-pill-badge">Nusantara Edition</span>
+                        <h3 class="text-xl font-extrabold text-ikea-textDark">${data.title}</h3>
+                        <p class="text-lg font-black text-ikea-blue">${data.price}</p>
+                        <p class="text-ikea-textMuted leading-relaxed">${data.desc}</p>
+                        <p class="p-2 bg-ikea-grayBg border text-[11px] font-mono text-gray-700">${data.specs}</p>
+                        <button onclick="addToCart('${data.title}', 800000); closeProductModal();" class="w-full bg-ikea-blue hover:bg-ikea-hoverblue text-white font-extrabold py-3 uppercase tracking-wider">
+                            Add to Shopping Bag
+                        </button>
+                    </div>
+                </div>
+            `;
+            modal.classList.remove('hidden');
+        }
+
+        function closeProductModal() {
+            document.getElementById('product-modal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
